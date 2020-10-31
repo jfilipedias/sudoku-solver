@@ -4,172 +4,180 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sudoku Solver</title>
+    <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
     <script src=""></script>
     
-    <div id="container">
-        <div id="content">
-            <h1>Sudoku Solver</h1>
-            
-            <p>
-                This is a simple project to study recursion and backtracking. 
-                It was inspired on <a href="https://www.youtube.com/watch?v=G_UYXzGuqvM">this</a> 
-                video of Computerphile channel.
-            </p>
-
-            <p>
-                The usage is simple: you can randomize a sudoku board and you
-                can solve the given board just clicking on the buttons bellow.
-            </p>
-
-            <p>
-                Project by <a href="https://github.com/jfilipedias">jfilipedias</a>.
-            </p>
-
-            <div id="buttons">
-                <button id="radomButton" type="button"> Randomize </button>
-                <button id="solveButton" type="button"> Solve </button>
-            </div>
-        </div>
+    <div class="page">
+        <div class="grid-container">
+            <div class="content">
+                <div class="title">
+                    <h1>Sudoku Solver</h1>
+                </div>
+                
+                <div class="text">
+                    <p>
+                        This is a simple project to study recursion and backtracking. 
+                        It was inspired on <a href="https://www.youtube.com/watch?v=G_UYXzGuqvM">this</a> 
+                        video of Computerphile channel.
+                    </p>
         
-        <div id="board">
-            <table>
-                <!-- Row 1 -->
-                <tr>
-                    <td class="left top"></td>
-                    <td class="top"></td>
-                    <td class="top"></td>
+                    <p>
+                        The usage is simple: you can randomize a sudoku board and you
+                        can solve the given board just clicking on the buttons bellow.
+                    </p>
+        
+                    <p>
+                        Project by <a href="https://github.com/jfilipedias">jfilipedias</a>.
+                    </p>
+                </div>
                 
-                    <td class="top"></td>
-                    <td class="top"></td>
-                    <td class="top"></td>
-                
-                    <td class="top"></td>
-                    <td class="top"></td>
-                    <td class="right top"></td>
-                </tr>
-
-                <!-- Row 2 -->
-                <tr>
-                    <td class="left"></td>
-                    <td></td>
-                    <td></td>
-                
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                
-                    <td></td>
-                    <td></td>
-                    <td class="right"></td>
-                </tr>
-
-                <!-- Row 3 -->
-                <tr>
-                    <td class="left bottom"></td>
-                    <td class="bottom"></td>
-                    <td class="bottom"></td>
-                
-                    <td class="bottom"></td>
-                    <td class="bottom"></td>
-                    <td class="bottom"></td>
-                
-                    <td class="bottom"></td>
-                    <td class="bottom"></td>
-                    <td class="right bottom"></td>
-                </tr>
-
-                <!-- Row 4 -->
-                <tr>
-                    <td class="left"></td>
-                    <td></td>
-                    <td></td>
-                
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                
-                    <td></td>
-                    <td></td>
-                    <td class="right"></td>
-                </tr>
-
-                <!-- Row  5-->
-                <tr>
-                    <td class="left"></td>
-                    <td></td>
-                    <td></td>
-                
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                
-                    <td></td>
-                    <td></td>
-                    <td class="right"></td>
-                </tr>
-
-                <!-- Row 6 -->
-                <tr>
-                    <td class="left bottom"></td>
-                    <td class="bottom"></td>
-                    <td class="bottom"></td>
-                
-                    <td class="bottom"></td>
-                    <td class="bottom"></td>
-                    <td class="bottom"></td>
-                
-                    <td class="bottom"></td>
-                    <td class="bottom"></td>
-                    <td class="right bottom"></td>
-                </tr>
-
-                <!-- Row 7 -->
-                <tr>
-                    <td class="left"></td>
-                    <td></td>
-                    <td></td>
-                
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                
-                    <td></td>
-                    <td></td>
-                    <td class="right"></td>
-                </tr>
-
-                <!-- Row 8 -->
-                <tr>
-                    <td class="left"></td>
-                    <td></td>
-                    <td></td>
-                
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                
-                    <td></td>
-                    <td></td>
-                    <td class="right"></td>
-                </tr>
-
-                <!-- Row 9 -->
-                <tr>
-                    <td class="left bottom"></td>
-                    <td class="bottom"></td>
-                    <td class="bottom"></td>
-                
-                    <td class="bottom"></td>
-                    <td class="bottom"></td>
-                    <td class="bottom"></td>
-                
-                    <td class="bottom"></td>
-                    <td class="bottom"></td>
-                    <td class="right bottom"></td>
-                </tr>
-            </table>
+    
+                <div class="buttons">
+                    <button id="radomButton" type="button"> Randomize </button>
+                    <button id="solveButton" type="button"> Solve </button>
+                </div>
+            </div>
+            
+            <div class="board">
+                <table>
+                    <!-- Row 1 -->
+                    <tr>
+                        <td class="left top"></td>
+                        <td class="top"></td>
+                        <td class="top"></td>
+                    
+                        <td class="top"></td>
+                        <td class="top"></td>
+                        <td class="top"></td>
+                    
+                        <td class="top"></td>
+                        <td class="top"></td>
+                        <td class="right top"></td>
+                    </tr>
+    
+                    <!-- Row 2 -->
+                    <tr>
+                        <td class="left"></td>
+                        <td></td>
+                        <td></td>
+                    
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    
+                        <td></td>
+                        <td></td>
+                        <td class="right"></td>
+                    </tr>
+    
+                    <!-- Row 3 -->
+                    <tr>
+                        <td class="left bottom"></td>
+                        <td class="bottom"></td>
+                        <td class="bottom"></td>
+                    
+                        <td class="bottom"></td>
+                        <td class="bottom"></td>
+                        <td class="bottom"></td>
+                    
+                        <td class="bottom"></td>
+                        <td class="bottom"></td>
+                        <td class="right bottom"></td>
+                    </tr>
+    
+                    <!-- Row 4 -->
+                    <tr>
+                        <td class="left"></td>
+                        <td></td>
+                        <td></td>
+                    
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    
+                        <td></td>
+                        <td></td>
+                        <td class="right"></td>
+                    </tr>
+    
+                    <!-- Row  5-->
+                    <tr>
+                        <td class="left"></td>
+                        <td></td>
+                        <td></td>
+                    
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    
+                        <td></td>
+                        <td></td>
+                        <td class="right"></td>
+                    </tr>
+    
+                    <!-- Row 6 -->
+                    <tr>
+                        <td class="left bottom"></td>
+                        <td class="bottom"></td>
+                        <td class="bottom"></td>
+                    
+                        <td class="bottom"></td>
+                        <td class="bottom"></td>
+                        <td class="bottom"></td>
+                    
+                        <td class="bottom"></td>
+                        <td class="bottom"></td>
+                        <td class="right bottom"></td>
+                    </tr>
+    
+                    <!-- Row 7 -->
+                    <tr>
+                        <td class="left"></td>
+                        <td></td>
+                        <td></td>
+                    
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    
+                        <td></td>
+                        <td></td>
+                        <td class="right"></td>
+                    </tr>
+    
+                    <!-- Row 8 -->
+                    <tr>
+                        <td class="left"></td>
+                        <td></td>
+                        <td></td>
+                    
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    
+                        <td></td>
+                        <td></td>
+                        <td class="right"></td>
+                    </tr>
+    
+                    <!-- Row 9 -->
+                    <tr>
+                        <td class="left bottom"></td>
+                        <td class="bottom"></td>
+                        <td class="bottom"></td>
+                    
+                        <td class="bottom"></td>
+                        <td class="bottom"></td>
+                        <td class="bottom"></td>
+                    
+                        <td class="bottom"></td>
+                        <td class="bottom"></td>
+                        <td class="right bottom"></td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
 </body>

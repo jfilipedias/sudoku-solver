@@ -1,0 +1,53 @@
+html, body { height: 100%; }
+
+.page{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.grid-container {  
+    display: grid;
+    grid-template-columns: 150px 150px 150px 150px 150px;
+    grid-template-rows: 150px 150px 150px;
+    gap: 20px 20px;
+    grid-template-areas:
+      "content content board board board"
+      "content content board board board"
+      "content content board board board";
+}
+
+.board { grid-area: board; }
+
+.content {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 0.5fr 1.5fr 0.5fr;
+    gap: 0px 0px;
+    grid-template-areas:
+        "title title title"
+        "text text text"
+        "buttons buttons buttons";
+    grid-area: content;
+}
+
+.title { grid-area: title; }
+
+.buttons { grid-area: buttons; }
+
+.text { grid-area: text; }
+
+table {
+    height: 100%;
+    width: 100%;
+    border: 2px solid #202020;
+}
+
+td {
+    padding: 0;
+    margin: 0;
+    border: 1px solid #606060;
+    text-align: center;
+    vertical-align: middle;  
+}
