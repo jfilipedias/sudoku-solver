@@ -1,4 +1,9 @@
-html, body { height: 100%; }
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400&family=Oswald:wght@500&display=swap');
+
+html, body { 
+    height: 100vh; 
+    background-color: #efefef;
+}
 
 .page{
     height: 100%;
@@ -7,36 +12,68 @@ html, body { height: 100%; }
     justify-content: center;
 }
 
-.grid-container {  
-    display: grid;
-    grid-template-columns: 150px 150px 150px 150px 150px;
-    grid-template-rows: 150px 150px 150px;
-    gap: 30px 30px;
-    grid-template-areas:
-      "content content board board board"
-      "content content board board board"
-      "content content board board board";
+.container {  
+    height: 500px;
+    width: 900px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: #fafafa;
+    border-radius: 8px;
+    box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
 }
-
-.board { grid-area: board; }
 
 .content {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 0.5fr 1.5fr 0.5fr;
-    gap: 0px 0px;
-    grid-template-areas:
-        "title title title"
-        "text text text"
-        "buttons buttons buttons";
-    grid-area: content;
+    width: 350px;
 }
 
-.title { grid-area: title; }
+.board { 
+    height: 420px;
+    width: 420px; 
+}
 
-.buttons { grid-area: buttons; }
+.title {  
+    font-family: 'Oswald', sans-serif;
+    font-size: 31px;
+    color: #E02041;
+    border-bottom: 1px solid #909090;   
+}
 
-.text { grid-area: text; }
+.text { 
+    grid-area: text; 
+    font-family: 'Lato', sans-serif;
+    font-size: 18px;
+    color: #202020;
+}
+
+.buttons { 
+    grid-area: buttons; 
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+h1 {
+    margin: 0 0 10px 0;
+}
+
+a {
+    text-decoration: none;
+    color: #1A73E8;
+}
+
+button {
+    height: 50px;
+    width: 170px;
+    background-color: #E02041; 
+    border: none;
+    border-radius: 6px;
+    outline: none;
+    font-family: 'Lato', sans-serif;
+    font-size: 18px;
+    color: #FFFFFF;
+}
 
 table {
     height: 100%;
@@ -51,18 +88,18 @@ td {
     vertical-align: middle;  
 }
 
-td.top {
+.top {
     border-top: 3px solid #202020;
 }
 
-td.right {
+.right {
     border-right: 3px solid #202020;
 }
 
-td.bottom {
+.bottom {
     border-bottom: 3px solid #202020;
 }
 
-td.left {
+.left {
     border-left: 3px solid #202020;
 }
