@@ -99,6 +99,10 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
+.default {
+    background-color: #e5e5e5;
+}
+
 .top {
     border-top: 3px solid #202020;
 }
