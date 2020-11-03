@@ -13,19 +13,19 @@ var board = [
 setBoard();
 
 function setBoard () {
-    var rows = document.querySelectorAll('tr');
+    var tableRow = document.querySelectorAll('tr');
 
-    for (var i = 0; i < 9; i++) {
-        var inputs = rows[i].querySelectorAll('input');
-        var boardRow = board[i];
+    for (var row = 0; row < 9; row++) {
+        var inputs = tableRow[row].querySelectorAll('input');
+        var boardRow = board[row];
 
-        for (var j = 0; j < 9; j++) { 
-            if(inputs[j].value == 0) inputs[j].value = '';
+        for (var col = 0; col < 9; col++) { 
+            if(inputs[col].value == 0) inputs[col].value = '';
 
-            if(boardRow[j] === 0) continue;
+            if(boardRow[col] === 0) continue;
 
-            inputs[j].value = boardRow[j];
-            inputs[j].setAttribute('class', 'default');
+            inputs[col].value = boardRow[col];
+            inputs[col].setAttribute('class', 'default');
         }
     }
 }
@@ -41,24 +41,69 @@ function getBoard () {
             var number = 0;
             
             if (inputs[j].value !== null || inputs[j].value !== undefined || inputs[j].value !== NaN) 
-                number = validateNumber(inputs[j].value);
+                number = getFirstDigit(inputs[j].value);
             
             boardRow[j] = number;
         }
     }
 }
 
-function solve () {
-    getBoard();
-    setBoard();
-
-    console.log('Solving...');
-}
-
-function validateNumber (number) {
+function getFirstDigit (number) {
     while (number >= 10)
         number /= 10;
     
     return Math.trunc(number);
+}
+
+function prepareToSolve() {
+    getBoard();
+    setBoard();
+    solve();
+}
+
+function solve () {
+    for (var row = 0; row < 9; row++) {
+        for (var col = 0; col < 9; col++) {
+            if (board[row][col] !== 0) continue;
+            
+            for (var number = 1; number < 10; number ++) {
+                if(isValid(row, col, number)) {
+                    board[row][col] = number;
+                    solve();
+                    board[row][col] = 0;
+                }
+            } 
+            return;
+        }
+    }
+
+    setBoard(); 
+}
+
+function isValid (row, col, number) {
+    // Check Row
+    for (var i = 0; i < 9; i++) {
+        if (board[row][i] === number)
+            return false;
+    }
+
+    // Check Collum
+    for (var i = 0; i < 9; i++) {
+        if (board[i][col] === number)
+            return false;
+    }
+
+    // Check Square 
+    var squareRow = Math.trunc(row/3) * 3;
+    var squareCol = Math.trunc(col/3) * 3;
+
+    for (var i = 0; i < 3; i++) {
+        for (var j = 0; j < 3; j++) {
+            if(board[squareRow + 1][squareCol + 1] === number)
+                return false
+        }
+    } 
+
+    return true;
 }
  
