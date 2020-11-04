@@ -17,33 +17,33 @@ function setBoard () {
 
     for (var row = 0; row < 9; row++) {
         var inputs = tableRow[row].querySelectorAll('input');
-        var boardRow = board[row];
 
         for (var col = 0; col < 9; col++) { 
             if(inputs[col].value == 0) inputs[col].value = '';
 
-            if(boardRow[col] === 0) continue;
+            if(board[row][col] === 0) continue;
 
-            inputs[col].value = boardRow[col];
+            inputs[col].value = board[row][col];
             inputs[col].setAttribute('class', 'default');
         }
     }
+
+    console.log('Setting Board...');
 }
 
 function getBoard () {
     var rows = document.querySelectorAll('tr');
 
-    for (var i = 0; i < 9; i++) {
-        var inputs = rows[i].querySelectorAll('input');
-        var boardRow = board[i];
+    for (var row = 0; row < 9; row++) {
+        var inputs = rows[row].querySelectorAll('input');
 
-        for (var j = 0; j < 9; j++) { 
+        for (var col = 0; col < 9; col++) { 
             var number = 0;
             
-            if (inputs[j].value !== null || inputs[j].value !== undefined || inputs[j].value !== NaN) 
-                number = getFirstDigit(inputs[j].value);
+            if (inputs[col].value !== null || inputs[col].value !== undefined || inputs[col].value !== NaN) 
+                number = getFirstDigit(inputs[col].value);
             
-            boardRow[j] = number;
+                board[row][col] = number;
         }
     }
 }
@@ -61,23 +61,31 @@ function prepareToSolve() {
     solve();
 }
 
+var operation = 0;
 function solve () {
+    operation++;
+    console.log('Solving');
+
     for (var row = 0; row < 9; row++) {
         for (var col = 0; col < 9; col++) {
             if (board[row][col] !== 0) continue;
             
             for (var number = 1; number < 10; number ++) {
-                if(isValid(row, col, number)) {
-                    board[row][col] = number;
-                    solve();
-                    board[row][col] = 0;
-                }
+                if(!isValid(row, col, number)) continue;
+                
+                updateBoard(row, col, number);
+                sleep(15);
+                solve();
+                updateBoard(row, col, 0);
+                sleep(15);
             } 
+
             return;
         }
     }
-
-    setBoard(); 
+    
+    /* console.log(operation);
+    setBoard();  */
 }
 
 function isValid (row, col, number) {
@@ -93,17 +101,32 @@ function isValid (row, col, number) {
             return false;
     }
 
-    // Check Square 
     var squareRow = Math.trunc(row/3) * 3;
     var squareCol = Math.trunc(col/3) * 3;
 
+    // Check Square 
     for (var i = 0; i < 3; i++) {
         for (var j = 0; j < 3; j++) {
-            if(board[squareRow + 1][squareCol + 1] === number)
-                return false
+            if (board[squareRow + i][squareCol + j] === number)
+                return false;
         }
     } 
 
     return true;
 }
+
+function updateBoard (row, col, number) {
+    var rows = document.querySelectorAll('tr');
+    var inputs = rows[row].querySelectorAll('input');
+    inputs[col].value = number;
+    
+    board[row][col] = number;
+}
  
+function sleep(milliseconds) {
+    const date = Date.now();
+    let currentDate = null;
+    do {
+      currentDate = Date.now();
+    } while (currentDate - date < milliseconds);
+  }
