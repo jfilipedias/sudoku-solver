@@ -27,8 +27,6 @@ function setBoard () {
             inputs[col].setAttribute('class', 'default');
         }
     }
-
-    console.log('Setting Board...');
 }
 
 function getBoard () {
@@ -61,11 +59,7 @@ function prepareToSolve() {
     solve();
 }
 
-var operation = 0;
 function solve () {
-    operation++;
-    console.log('Solving');
-
     for (var row = 0; row < 9; row++) {
         for (var col = 0; col < 9; col++) {
             if (board[row][col] !== 0) continue;
@@ -73,19 +67,16 @@ function solve () {
             for (var number = 1; number < 10; number ++) {
                 if(!isValid(row, col, number)) continue;
                 
-                updateBoard(row, col, number);
-                sleep(15);
+                board[row][col] = number;
                 solve();
-                updateBoard(row, col, 0);
-                sleep(15);
+                board[row][col] = 0;
             } 
 
             return;
         }
     }
-    
-    /* console.log(operation);
-    setBoard();  */
+        
+    setBoard();
 }
 
 function isValid (row, col, number) {
@@ -114,19 +105,4 @@ function isValid (row, col, number) {
 
     return true;
 }
-
-function updateBoard (row, col, number) {
-    var rows = document.querySelectorAll('tr');
-    var inputs = rows[row].querySelectorAll('input');
-    inputs[col].value = number;
-    
-    board[row][col] = number;
-}
  
-function sleep(milliseconds) {
-    const date = Date.now();
-    let currentDate = null;
-    do {
-      currentDate = Date.now();
-    } while (currentDate - date < milliseconds);
-  }
